@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Losowo.MainPage"
+             xmlns:viewmodel="clr-namespace:Losowo.ViewModels"
+             >
+ 
+        <ContentPage.Resources>
+            <StyleSheet Source="/Resources/Styles/StyleCss.css"/>
+        </ContentPage.Resources>
+
+
+
+    <ScrollView>
+        <StackLayout Margin="20">
+
+            <StackLayout>
+                <Label Text="Dodaj klasę" class="titleLabel"/>
+                <Entry Text="{Binding NewClassName}" Placeholder="Nazwa klasy"/>
+                <Button Text="Dodaj" Command="{Binding AddClassCommand}" x:Name="addButton"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Dodaj ucznia" class="titleLabel"/>
+                <Picker Title="Wybierz klasę" ItemsSource="{Binding Classes}" ItemDisplayBinding="{Binding ClassName}" SelectedItem="{Binding SelectedClass}"/>
+                <Entry Text="{Binding NewStudentName}" Placeholder="Imię"/>
+                <Entry Text="{Binding NewStudentSecondName}" Placeholder="Nazwisko"/>
+                <Button Text="Dodaj" Command="{Binding AddStudentCommand}" x:Name="addStudentButton"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Lista uczniów i losowanie" class="titleLabel"/>
+                <CollectionView x:Name="studentsList" ItemsSource="{Binding SelectedClass.StudentList}" SelectionMode="Single" SelectedItem="{Binding SelectedStudent}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="10">
+                                <Entry Text="{Binding Name}" FontSize="Medium"/>
+                                <Entry Text="{Binding SecondName}" FontSize="Medium" Margin="10,0,0,0"/>
+                                <Button Text="Edytuj" 
+                                Command="{Binding Path=BindingContext.EditStudentCommand, 
+                                Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                CommandParameter="{Binding .}" x:Name="editButton"/>
+                                <Button Text="Usuń" 
+                                Command="{Binding Path=BindingContext.DeleteStudentCommand, 
+                                Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
+                                CommandParameter="{Binding .}" x:Name="deleteButton"/>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Button Text="Losuj ucznia" Command="{Binding RandomizeStudentCommand}" x:Name="randomizeButton"/>
+                <Label Text="{Binding RandomStudent.Name, StringFormat='Wylosowano: {0}'}" IsVisible="{Binding RandomStudent}" x:Name="randomStudentLabel"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
