@@ -1,21 +1,40 @@
 ^contentpage {
-    background-color: lightblue;
+    background-color: pink;
     -maui-shell-background: teal;
 }
 
 #firstStackLayout {
     padding: 100;
 }
-
+#Gstack{
+    padding: 20;
+}
+#StudentStack{
+    padding: 12;
+}
 #secondStackLayout {
     margin-top: 150;
 }
-
-#label {
+.editStudentButton{
+    background-color: silver;
+}
+.titleLabel {
+    color: saddlebrown;
     text-align: center;
     font-size: 24;
 }
-
-Button {
-    background-color: teal;
+#Entry{
+    font-size: medium;
+    color: black;
 }
+#randomButton{
+    background-color: lightslategray;
+}
+#addStudentButton{
+    background-color: lightblue;
+
+}
+#addClassButton{
+    background-color: lightskyblue;
+}
+

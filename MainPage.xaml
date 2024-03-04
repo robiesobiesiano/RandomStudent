@@ -12,12 +12,12 @@
 
 
     <ScrollView>
-        <StackLayout Margin="20">
+        <StackLayout  x:Name="Gstack">
 
             <StackLayout>
                 <Label Text="Dodaj klasę" class="titleLabel"/>
                 <Entry Text="{Binding NewClassName}" Placeholder="Nazwa klasy"/>
-                <Button Text="Dodaj" Command="{Binding AddClassCommand}" x:Name="addButton"/>
+                <Button Text="Dodaj" Command="{Binding AddClassCommand}" x:Name="addClassButton"/>
             </StackLayout>
 
             <StackLayout>
@@ -33,23 +33,23 @@
                 <CollectionView x:Name="studentsList" ItemsSource="{Binding SelectedClass.StudentList}" SelectionMode="Single" SelectedItem="{Binding SelectedStudent}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Orientation="Horizontal" Padding="10">
-                                <Entry Text="{Binding Name}" FontSize="Medium"/>
-                                <Entry Text="{Binding SecondName}" FontSize="Medium" Margin="10,0,0,0"/>
+                            <StackLayout Orientation="Horizontal" x:Name="StudentStack" >
+                                <Entry Text="{Binding Name}" />
+                                <Entry Text="{Binding SecondName}" FontSize="Medium" />
                                 <Button Text="Edytuj" 
                                 Command="{Binding Path=BindingContext.EditStudentCommand, 
                                 Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
-                                CommandParameter="{Binding .}" x:Name="editButton"/>
+                                CommandParameter="{Binding .}" class="editStudentButton"/>
                                 <Button Text="Usuń" 
                                 Command="{Binding Path=BindingContext.DeleteStudentCommand, 
                                 Source={RelativeSource AncestorType={x:Type ContentPage}}}" 
-                                CommandParameter="{Binding .}" x:Name="deleteButton"/>
+                                CommandParameter="{Binding .}" class="editStudentButton"/>
 
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <Button Text="Losuj ucznia" Command="{Binding RandomizeStudentCommand}" x:Name="randomizeButton"/>
+                <Button Text="Losuj ucznia" Command="{Binding RandomizeStudentCommand}" x:Name="randomButton"/>
                 <Label Text="{Binding RandomStudent.Name, StringFormat='Wylosowano: {0}'}" IsVisible="{Binding RandomStudent}" x:Name="randomStudentLabel"/>
             </StackLayout>
 
